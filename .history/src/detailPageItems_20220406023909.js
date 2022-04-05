@@ -61,9 +61,8 @@ function DetailPageItem(props) {
             className="btn btn-danger"
             onClick={() => {
               let stock = props.stock.map((e) => {
-                return e - 1;
+                e - 1;
               });
-              props.setStock(stock);
             }}
           >
             주문하기

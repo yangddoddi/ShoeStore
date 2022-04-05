@@ -56,18 +56,8 @@ function DetailPageItem(props) {
           <h4 className="pt-5">{newProduct.title}</h4>
           <p>{newProduct.content}</p>
           <p>{newProduct.price}</p>
-          <StackInfo stock={props.stock[newProduct.id]} />
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              let stock = props.stock.map((e) => {
-                return e - 1;
-              });
-              props.setStock(stock);
-            }}
-          >
-            주문하기
-          </button>
+          <StackInfo stock={props.stock[0]} />
+          <button className="btn btn-danger">주문하기</button>
           <button
             className="btn btn-danger"
             onClick={() => {
@@ -83,5 +73,5 @@ function DetailPageItem(props) {
 }
 
 function StackInfo(props) {
-  return <p>재고 : {props.stock}</p>;
+  return <p>재고 : {props.stock[0]}</p>;
 }

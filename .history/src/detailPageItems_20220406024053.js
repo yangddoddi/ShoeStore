@@ -63,7 +63,7 @@ function DetailPageItem(props) {
               let stock = props.stock.map((e) => {
                 return e - 1;
               });
-              props.setStock(stock);
+              console.log(stock);
             }}
           >
             주문하기

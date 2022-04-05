@@ -17,25 +17,6 @@ import axios from "axios";
 
 function App() {
   let [product, setProduct] = useState(productData);
-  let [loading, setLoading] = useState(false);
-  let [stock, setStock] = useState([3, 7, 2]);
-
-  function loadItems() {
-    setLoading(true);
-    axios
-      .get("https://codingapple1.github.io/shop/data2.json")
-      .then((json) => {
-        // let newProduct = json.data;
-        // let copyProduct = [...product];
-        // copyProduct.push(...newProduct);
-        // setProduct(copyProduct);
-        setProduct([...product, ...json.data]);
-        setLoading(false);
-      })
-      .catch(() => {
-        alert("서버 요청에 실패했습니다.");
-      });
-  }
 
   return (
     <div className="App">
@@ -44,13 +25,23 @@ function App() {
         <Route exact path="/">
           <Jumbotron />
           <ShopItemList product={product} />
-          {loading ? <LoadingSpinner /> : null}
-          <button className="btn btn-primary m-5" onClick={loadItems}>
+          <button
+            className="btn btn-primary m-5"
+            onClick={() => {
+              axios
+                .get("https://codingapple1.github.io/shop/data2.json")
+                .then((json) => {
+                  let newProduct = [...json.data];
+                  product.push(newProduct);
+                  console.log(product);
+                });
+            }}
+          >
             더보기
           </button>
         </Route>
         <Route path="/detail/:id">
-          <DetailPageItem product={product} stock={stock} setStock={setStock} />
+          <DetailPageItem product={product} />
         </Route>
       </Switch>
     </div>
@@ -148,14 +139,6 @@ function ShopItems(props) {
       <h5>{props.product.title}</h5>
       <p>{props.product.content}</p>
       <p>{props.product.price}</p>
-    </div>
-  );
-}
-
-function LoadingSpinner() {
-  return (
-    <div className="spinner-border text-primary loading" role="status">
-      <span class="sr-only">Loading...</span>
     </div>
   );
 }

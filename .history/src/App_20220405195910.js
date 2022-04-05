@@ -50,7 +50,7 @@ function App() {
           </button>
         </Route>
         <Route path="/detail/:id">
-          <DetailPageItem product={product} stock={stock} setStock={setStock} />
+          <DetailPageItem product={product} />
         </Route>
       </Switch>
     </div>

@@ -18,7 +18,6 @@ import axios from "axios";
 function App() {
   let [product, setProduct] = useState(productData);
   let [loading, setLoading] = useState(false);
-  let [stock, setStock] = useState([3, 7, 2]);
 
   function loadItems() {
     setLoading(true);
@@ -50,7 +49,7 @@ function App() {
           </button>
         </Route>
         <Route path="/detail/:id">
-          <DetailPageItem product={product} stock={stock} setStock={setStock} />
+          <DetailPageItem product={product} />
         </Route>
       </Switch>
     </div>

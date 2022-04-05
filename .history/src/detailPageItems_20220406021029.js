@@ -57,17 +57,7 @@ function DetailPageItem(props) {
           <p>{newProduct.content}</p>
           <p>{newProduct.price}</p>
           <StackInfo stock={props.stock[newProduct.id]} />
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              let stock = props.stock.map((e) => {
-                return e - 1;
-              });
-              props.setStock(stock);
-            }}
-          >
-            주문하기
-          </button>
+          <button className="btn btn-danger">주문하기</button>
           <button
             className="btn btn-danger"
             onClick={() => {
